@@ -1,0 +1,8 @@
+{
+  "error_message": "Request failed with status code 500",
+  "stack_trace": "Error: Request failed with status code 500\n    at processRequest (app/client.js:84:12)\n    at async handleRequest (app/routes.js:31:5)",
+  "logs": "2026-09-09 17:32:10 INFO Request received\n2026-09-09 17:32:10 ERROR Request failed with status code 500\n2026-09-09 17:32:10 INFO Request completed",
+  "recent_changes": "Several changes were deployed recently.",
+  "expected_behavior": "The request should complete successfully and return the expected response.",
+  "code_context": "The application processes incoming requests and communicates with backend services."
+}

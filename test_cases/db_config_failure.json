@@ -1,0 +1,8 @@
+{
+  "error_message": "Database connection failed: connection refused",
+  "stack_trace": "Traceback (most recent call last):\n  File \"app/db.py\", line 42, in connect_database\n    connection = psycopg2.connect(DATABASE_URL)\npsycopg2.OperationalError: connection refused",
+  "logs": "2026-09-09 10:14:21 INFO Starting application\n2026-09-09 10:14:22 INFO Loading database configuration\n2026-09-09 10:14:22 ERROR Database connection failed: connection refused\n2026-09-09 10:14:22 ERROR Application startup aborted",
+  "recent_changes": "Updated the database connection configuration and changed the database host from the local development server to a new database host.",
+  "expected_behavior": "The application should connect to the configured PostgreSQL database and start successfully.",
+  "code_context": "Database connection is created using the DATABASE_URL environment variable."
+}

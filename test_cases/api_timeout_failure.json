@@ -1,0 +1,8 @@
+{
+  "error_message": "Request to payment service timed out after 30 seconds",
+  "stack_trace": "Traceback (most recent call last):\n  File \"app/payment.py\", line 87, in process_payment\n    response = requests.post(PAYMENT_SERVICE_URL, json=payload, timeout=30)\n  File \"requests/api.py\", line 115, in post\n    return request(\"post\", url, data=data, json=json, **kwargs)\nrequests.exceptions.Timeout: HTTPSConnectionPool(host='payments.example.com', port=443): Read timed out. (read timeout=30)",
+  "logs": "2026-09-09 11:42:10 INFO Starting payment request\n2026-09-09 11:42:10 INFO Calling payment service\n2026-09-09 11:42:40 ERROR Payment service request timed out after 30 seconds\n2026-09-09 11:42:40 INFO Payment processing failed\n2026-09-09 11:42:40 INFO Returning 504 Gateway Timeout",
+  "recent_changes": "The payment service client timeout was recently changed from 60 seconds to 30 seconds.",
+  "expected_behavior": "Payment requests should complete successfully and return a payment confirmation to the customer.",
+  "code_context": "The application sends HTTPS POST requests to the payment service using the requests library with a configurable timeout."
+}

@@ -1,17 +1,1598 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FailureTrace</title>
-    <link rel="stylesheet" href="/static/style.css" />
-  </head>
-  <body>
-    <main>
-      <h1>FailureTrace</h1>
-      <p>Local prototype for investigating software failures.</p>
-      <p id="status">Checking backend health...</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FailureTrace — AI Failure Investigation</title>
+
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="brand-mark">FT</div>
+
+        <div>
+          <div class="brand-name">FailureTrace</div>
+          <div class="brand-subtitle">AI FAILURE INVESTIGATION</div>
+        </div>
+      </div>
+
+
+      <button
+        class="new-investigation-btn"
+        id="new-investigation"
+      >
+        <span>＋</span>
+        New Investigation
+      </button>
+
+
+      <nav class="sidebar-nav">
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <a
+          href="#"
+          class="nav-item active"
+          data-view="home"
+        >
+          <span>⌂</span>
+          Home
+        </a>
+
+        <a
+          href="#"
+          class="nav-item"
+          data-view="investigate"
+        >
+          <span>◈</span>
+          Investigate
+        </a>
+
+        <a
+          href="#"
+          class="nav-item"
+          data-view="history"
+        >
+          <span>◷</span>
+          History
+        </a>
+
+        <div class="nav-label nav-label-spaced">TOOLS</div>
+
+        <a
+          href="#"
+          class="nav-item"
+          data-view="saved"
+        >
+          <span>☆</span>
+          Saved
+        </a>
+
+        <a
+          href="#"
+          class="nav-item"
+          data-view="insights"
+        >
+          <span>◌</span>
+          Insights
+        </a>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <div class="system-status">
+
+          <span class="status-dot"></span>
+
+          <div>
+            <div class="status-title">
+              System Online
+            </div>
+
+            <div class="status-subtitle">
+              AI engine connected
+            </div>
+          </div>
+
+        </div>
+
+        <div class="version">
+          FAILURETRACE v0.1
+        </div>
+
+      </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+      <!-- ===================================================
+           HOME VIEW
+           =================================================== -->
+
+      <section
+        id="home-view"
+        class="page-view"
+      >
+
+        <!-- Topbar -->
+
+        <header class="topbar">
+
+          <div>
+            <div class="eyebrow">
+              ENGINEERING INTELLIGENCE
+            </div>
+
+            <h1>
+              FailureTrace
+            </h1>
+          </div>
+
+          <div class="topbar-right">
+
+            <div class="connection-status">
+              <span class="status-dot"></span>
+              Backend Connected
+            </div>
+
+          </div>
+
+        </header>
+
+
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+          <div class="hero-content">
+
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              AI-POWERED FAILURE INVESTIGATION
+            </div>
+
+            <h2>
+              Find out why your
+              <span>software failed.</span>
+            </h2>
+
+            <p>
+              FailureTrace connects errors, stack traces, logs and
+              recent changes to uncover probable root causes —
+              and tells you how to verify them.
+            </p>
+
+            <div class="hero-actions">
+
+              <button
+                class="primary-action"
+                data-action="start-investigation"
+              >
+                <span>＋</span>
+                Start Investigation
+                <span>→</span>
+              </button>
+
+              <button
+                class="secondary-action"
+                data-action="try-example"
+              >
+                Try an Example
+                <span>↗</span>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="hero-visual">
+
+            <div class="trace-orbit orbit-one"></div>
+            <div class="trace-orbit orbit-two"></div>
+            <div class="trace-orbit orbit-three"></div>
+
+            <div class="hero-core">
+
+              <div class="core-symbol">
+                FT
+              </div>
+
+              <div class="core-status">
+                <span></span>
+                INVESTIGATION ENGINE
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- Failure Categories -->
+
+        <section class="home-section">
+
+          <div class="section-top">
+
+            <div>
+              <div class="home-kicker">
+                EXPLORE
+              </div>
+
+              <h2>
+                What are you investigating?
+              </h2>
+
+              <p>
+                Start with the type of failure you're dealing with.
+              </p>
+            </div>
+
+            <span class="section-count">
+              06 CATEGORIES
+            </span>
+
+          </div>
+
+
+          <div class="category-grid">
+
+
+            <button
+              class="category-card category-runtime"
+              data-category="runtime"
+            >
+
+              <div class="category-icon">
+                ◉
+              </div>
+
+              <div class="category-content">
+
+                <span class="category-label">
+                  RUNTIME
+                </span>
+
+                <h3>
+                  Runtime Errors
+                </h3>
+
+                <p>
+                  Exceptions, crashes and unexpected application behavior.
+                </p>
+
+              </div>
+
+              <span class="category-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="category-card"
+              data-category="api"
+            >
+
+              <div class="category-icon">
+                ↯
+              </div>
+
+              <div class="category-content">
+
+                <span class="category-label">
+                  SERVICES
+                </span>
+
+                <h3>
+                  API Failures
+                </h3>
+
+                <p>
+                  HTTP errors, failed requests and service responses.
+                </p>
+
+              </div>
+
+              <span class="category-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="category-card"
+              data-category="database"
+            >
+
+              <div class="category-icon">
+                ◈
+              </div>
+
+              <div class="category-content">
+
+                <span class="category-label">
+                  DATA
+                </span>
+
+                <h3>
+                  Database Issues
+                </h3>
+
+                <p>
+                  Query failures, connection errors and data problems.
+                </p>
+
+              </div>
+
+              <span class="category-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="category-card"
+              data-category="deployment"
+            >
+
+              <div class="category-icon">
+                ◇
+              </div>
+
+              <div class="category-content">
+
+                <span class="category-label">
+                  INFRASTRUCTURE
+                </span>
+
+                <h3>
+                  Deployment Failures
+                </h3>
+
+                <p>
+                  Container, environment and production failures.
+                </p>
+
+              </div>
+
+              <span class="category-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="category-card"
+              data-category="build"
+            >
+
+              <div class="category-icon">
+                ⌁
+              </div>
+
+              <div class="category-content">
+
+                <span class="category-label">
+                  DEVELOPMENT
+                </span>
+
+                <h3>
+                  Build Failures
+                </h3>
+
+                <p>
+                  Compilation errors, dependency conflicts and CI failures.
+                </p>
+
+              </div>
+
+              <span class="category-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="category-card"
+              data-category="network"
+            >
+
+              <div class="category-icon">
+                ◎
+              </div>
+
+              <div class="category-content">
+
+                <span class="category-label">
+                  NETWORK
+                </span>
+
+                <h3>
+                  Network Issues
+                </h3>
+
+                <p>
+                  Timeouts, connectivity problems and unreachable services.
+                </p>
+
+              </div>
+
+              <span class="category-arrow">
+                →
+              </span>
+
+            </button>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- Quick Investigations -->
+
+        <section class="home-section">
+
+          <div class="section-top">
+
+            <div>
+              <div class="home-kicker">
+                QUICK START
+              </div>
+
+              <h2>
+                Popular investigations
+              </h2>
+
+              <p>
+                Jump directly into a common engineering problem.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="quick-grid">
+
+
+            <button
+              class="quick-card"
+              data-example="api-500"
+            >
+
+              <div class="quick-icon">
+                500
+              </div>
+
+              <div class="quick-content">
+
+                <span>
+                  API
+                </span>
+
+                <strong>
+                  Why is my API returning 500?
+                </strong>
+
+                <small>
+                  Server-side request failure
+                </small>
+
+              </div>
+
+              <span class="quick-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="quick-card"
+              data-example="docker"
+            >
+
+              <div class="quick-icon">
+                ⬡
+              </div>
+
+              <div class="quick-content">
+
+                <span>
+                  DEPLOYMENT
+                </span>
+
+                <strong>
+                  Why is my container crashing?
+                </strong>
+
+                <small>
+                  Runtime deployment failure
+                </small>
+
+              </div>
+
+              <span class="quick-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="quick-card"
+              data-example="database"
+            >
+
+              <div class="quick-icon">
+                DB
+              </div>
+
+              <div class="quick-content">
+
+                <span>
+                  DATABASE
+                </span>
+
+                <strong>
+                  Why is my database timing out?
+                </strong>
+
+                <small>
+                  Connection and query failure
+                </small>
+
+              </div>
+
+              <span class="quick-arrow">
+                →
+              </span>
+
+            </button>
+
+
+
+            <button
+              class="quick-card"
+              data-example="keyerror"
+            >
+
+              <div class="quick-icon">
+                {}
+              </div>
+
+              <div class="quick-content">
+
+                <span>
+                  PYTHON
+                </span>
+
+                <strong>
+                  Why am I getting a KeyError?
+                </strong>
+
+                <small>
+                  Missing dictionary field
+                </small>
+
+              </div>
+
+              <span class="quick-arrow">
+                →
+              </span>
+
+            </button>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- Product Stats -->
+
+        <section class="stats-strip">
+
+          <div class="stat">
+
+            <span class="stat-value">
+              5
+            </span>
+
+            <span class="stat-label">
+              SIGNAL TYPES
+            </span>
+
+          </div>
+
+
+          <div class="stat-divider"></div>
+
+
+          <div class="stat">
+
+            <span class="stat-value">
+              AI
+            </span>
+
+            <span class="stat-label">
+              ROOT CAUSE ANALYSIS
+            </span>
+
+          </div>
+
+
+          <div class="stat-divider"></div>
+
+
+          <div class="stat">
+
+            <span class="stat-value">
+              01
+            </span>
+
+            <span class="stat-label">
+              INVESTIGATION PIPELINE
+            </span>
+
+          </div>
+
+
+          <div class="stat-divider"></div>
+
+
+          <div class="stat">
+
+            <span class="stat-value">
+              ✓
+            </span>
+
+            <span class="stat-label">
+              VERIFICATION FIRST
+            </span>
+
+          </div>
+
+        </section>
+
+
+
+        <footer class="footer">
+
+          <span>FailureTrace</span>
+          <span>•</span>
+          <span>
+            AI-assisted engineering investigation
+          </span>
+          <span>•</span>
+          <span>
+            Prototype
+          </span>
+
+        </footer>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           INVESTIGATION VIEW
+           =================================================== -->
+
+      <section
+        id="investigate-view"
+        class="page-view hidden"
+      >
+
+        <header class="topbar">
+
+          <div>
+
+            <div class="eyebrow">
+              ENGINEERING INTELLIGENCE / INVESTIGATION
+            </div>
+
+            <h1>
+              Failure Investigation
+            </h1>
+
+          </div>
+
+          <div class="topbar-right">
+
+            <div class="connection-status">
+              <span class="status-dot"></span>
+              Backend Connected
+            </div>
+
+          </div>
+
+        </header>
+
+
+
+        <section class="workspace">
+
+          <!-- Input Panel -->
+
+          <div
+            id="investigation-panel"
+            class="panel investigation-panel"
+          >
+
+            <div class="panel-header">
+
+              <div>
+
+                <div class="panel-kicker">
+                  01 / INPUT
+                </div>
+
+                <h2>
+                  Describe the failure
+                </h2>
+
+                <p>
+                  Provide the signals available from your application.
+                  FailureTrace will analyze them together.
+                </p>
+
+              </div>
+
+              <div class="panel-header-actions">
+
+                <div class="ai-indicator">
+                  <span></span>
+                  AI READY
+                </div>
+
+                <button
+                  type="button"
+                  id="edit-signals-btn"
+                  class="secondary-action compact-action hidden"
+                >
+                  Edit signals
+                </button>
+
+              </div>
+
+            </div>
+
+            <div
+              id="signals-collapsed-bar"
+              class="signals-collapsed-bar hidden"
+            >
+              <span>Signals submitted for this investigation.</span>
+              <span class="signals-collapsed-hint">
+                Expand the form to adjust evidence and re-run analysis.
+              </span>
+            </div>
+
+
+            <form id="investigation-form">
+
+
+              <div class="input-group">
+
+                <label for="error-message">
+                  <span class="input-number">01</span>
+                  Error Message
+                </label>
+
+                <textarea
+                  id="error-message"
+                  placeholder="e.g. KeyError: 'user_id'"
+                  required
+                ></textarea>
+
+              </div>
+
+
+
+              <div class="input-group">
+
+                <label for="stack-trace">
+                  <span class="input-number">02</span>
+                  Stack Trace
+                </label>
+
+                <textarea
+                  id="stack-trace"
+                  class="code-input"
+                  placeholder="Paste the relevant stack trace..."
+                ></textarea>
+
+              </div>
+
+
+
+              <div class="input-group">
+
+                <label for="logs">
+                  <span class="input-number">03</span>
+                  Application Logs
+                </label>
+
+                <textarea
+                  id="logs"
+                  placeholder="Paste relevant application or server logs..."
+                ></textarea>
+
+              </div>
+
+
+
+              <div class="input-grid">
+
+                <div class="input-group">
+
+                  <label for="recent-changes">
+                    <span class="input-number">04</span>
+                    Recent Changes
+                  </label>
+
+                  <textarea
+                    id="recent-changes"
+                    placeholder="Recent deployments, code changes, configuration updates..."
+                  ></textarea>
+
+                </div>
+
+
+
+                <div class="input-group">
+
+                  <label for="expected-behavior">
+                    <span class="input-number">05</span>
+                    Expected Behavior
+                  </label>
+
+                  <textarea
+                    id="expected-behavior"
+                    placeholder="What should have happened?"
+                  ></textarea>
+
+                </div>
+
+              </div>
+
+
+
+              <button
+                type="submit"
+                id="investigate-btn"
+                class="investigate-btn"
+              >
+
+                <span class="btn-icon">⌁</span>
+
+                <span>
+                  Analyze Failure
+                </span>
+
+                <span class="btn-arrow">
+                  →
+                </span>
+
+              </button>
+
+            </form>
+
+
+            <div
+              id="status"
+              class="request-status"
+            >
+              Ready to investigate
+            </div>
+
+          </div>
+
+
+
+          <!-- Investigation dashboard -->
+
+          <div
+            id="result-card"
+            class="investigation-dashboard hidden"
+          >
+
+            <div class="panel investigation-summary-card">
+
+              <div class="panel-header result-header">
+
+                <div>
+
+                  <div class="panel-kicker">
+                    02 / DASHBOARD
+                  </div>
+
+                  <h2>
+                    Investigation Summary
+                  </h2>
+
+                  <p>
+                    Hypothesis from the investigation API, with
+                    frontend-estimated severity for triage.
+                  </p>
+
+                </div>
+
+                <div
+                  id="result-status"
+                  class="result-status"
+                >
+                  NEEDS VERIFICATION
+                </div>
+
+              </div>
+
+
+              <div class="summary-grid">
+
+                <div class="summary-block failure-summary">
+
+                  <div class="section-label">
+                    FAILURE
+                  </div>
+
+                  <div
+                    id="result-failure"
+                    class="failure-value"
+                  >
+                    —
+                  </div>
+
+                  <div
+                    id="result-location"
+                    class="failure-location"
+                  >
+                    —
+                  </div>
+
+                </div>
+
+
+                <div class="summary-block">
+
+                  <div class="section-label">
+                    ESTIMATED SEVERITY
+                  </div>
+
+                  <div
+                    id="severity-badge"
+                    class="severity-badge severity-unknown"
+                  >
+                    —
+                  </div>
+
+                  <p
+                    id="severity-note"
+                    class="summary-note"
+                  >
+                    Frontend-derived estimate. The investigation API
+                    does not currently provide a severity field.
+                  </p>
+
+                </div>
+
+
+                <div class="summary-block">
+
+                  <div class="section-heading">
+
+                    <div>
+
+                      <div class="section-label">
+                        CONFIDENCE
+                      </div>
+
+                      <h3>
+                        How strong is the hypothesis?
+                      </h3>
+
+                    </div>
+
+                    <div
+                      id="confidence"
+                      class="confidence"
+                    >
+                      —
+                    </div>
+
+                  </div>
+
+                  <div
+                    class="confidence-meter"
+                    aria-hidden="true"
+                  >
+                    <div
+                      id="confidence-meter-fill"
+                      class="confidence-meter-fill"
+                    ></div>
+                  </div>
+
+                  <p
+                    id="confidence-explanation"
+                    class="summary-note"
+                  >
+                    Confidence is the value returned with the root cause.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="dashboard-columns">
+
+              <div class="panel agent-investigation-panel">
+
+                <div class="panel-header compact-panel-header">
+
+                  <div>
+
+                    <div class="panel-kicker">
+                      ORCHESTRATOR
+                    </div>
+
+                    <h2>
+                      Investigation agents
+                    </h2>
+
+                    <p>
+                      Live-looking specialist statuses based on the
+                      signals you submitted. This is a frontend
+                      visualization — the backend still runs a single
+                      investigator.
+                    </p>
+
+                  </div>
+
+                  <div
+                    id="agent-run-state"
+                    class="agent-run-state"
+                  >
+                    Idle
+                  </div>
+
+                </div>
+
+                <div
+                  id="agent-list"
+                  class="agent-list"
+                >
+
+                  <div
+                    class="agent-row"
+                    data-agent="orchestrator"
+                  >
+                    <span class="agent-pulse"></span>
+                    <div class="agent-copy">
+                      <strong>Orchestrator</strong>
+                      <span>Coordinates specialist review of submitted signals.</span>
+                    </div>
+                    <span class="agent-status">Idle</span>
+                  </div>
+
+                  <div
+                    class="agent-row"
+                    data-agent="error"
+                    data-signal="error_message"
+                  >
+                    <span class="agent-pulse"></span>
+                    <div class="agent-copy">
+                      <strong>Error specialist</strong>
+                      <span>Reviews the reported error message.</span>
+                    </div>
+                    <span class="agent-status">Idle</span>
+                  </div>
+
+                  <div
+                    class="agent-row"
+                    data-agent="stack"
+                    data-signal="stack_trace"
+                  >
+                    <span class="agent-pulse"></span>
+                    <div class="agent-copy">
+                      <strong>Stack trace specialist</strong>
+                      <span>Reviews the stack trace, if provided.</span>
+                    </div>
+                    <span class="agent-status">Idle</span>
+                  </div>
+
+                  <div
+                    class="agent-row"
+                    data-agent="logs"
+                    data-signal="logs"
+                  >
+                    <span class="agent-pulse"></span>
+                    <div class="agent-copy">
+                      <strong>Log specialist</strong>
+                      <span>Reviews application logs, if provided.</span>
+                    </div>
+                    <span class="agent-status">Idle</span>
+                  </div>
+
+                  <div
+                    class="agent-row"
+                    data-agent="changes"
+                    data-signal="recent_changes"
+                  >
+                    <span class="agent-pulse"></span>
+                    <div class="agent-copy">
+                      <strong>Change specialist</strong>
+                      <span>Reviews recent changes, if provided.</span>
+                    </div>
+                    <span class="agent-status">Idle</span>
+                  </div>
+
+                  <div
+                    class="agent-row"
+                    data-agent="expected"
+                    data-signal="expected_behavior"
+                  >
+                    <span class="agent-pulse"></span>
+                    <div class="agent-copy">
+                      <strong>Behavior specialist</strong>
+                      <span>Compares expected behavior, if provided.</span>
+                    </div>
+                    <span class="agent-status">Idle</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="panel chain-panel">
+
+                <div class="section-heading">
+
+                  <span class="section-icon">
+                    ⌁
+                  </span>
+
+                  <div>
+
+                    <div class="section-label">
+                      FAILURE CHAIN
+                    </div>
+
+                    <h3>
+                      Symptom → Contributing Failure → Root Cause → Impact
+                    </h3>
+
+                  </div>
+
+                </div>
+
+                <p class="summary-note chain-mapping-note">
+                  Stages are labeled in the UI from the API
+                  <code>failure_chain</code> list (unlabeled strings).
+                </p>
+
+                <div
+                  id="failure-chain"
+                  class="failure-chain"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <div class="panel results-panel">
+
+              <div class="section-heading">
+
+                <span class="section-icon">
+                  ◉
+                </span>
+
+                <div>
+
+                  <div class="section-label">
+                    ROOT CAUSE
+                  </div>
+
+                  <h3>
+                    Evidence-backed hypothesis
+                  </h3>
+
+                </div>
+
+              </div>
+
+              <div
+                id="root-cause"
+                class="result-text"
+              >
+                —
+              </div>
+
+              <div class="section-label evidence-heading">
+                EVIDENCE RETURNED WITH THIS HYPOTHESIS
+              </div>
+
+              <p class="summary-note">
+                Each item below is evidence from the API response.
+                It is shown as consistent with the hypothesis above.
+                The API does not provide a separate rationale per item.
+              </p>
+
+              <div
+                id="evidence-list"
+                class="evidence-list"
+              ></div>
+
+            </div>
+
+
+            <div class="panel results-panel">
+
+              <div class="section-heading">
+
+                <span class="section-icon">
+                  ✦
+                </span>
+
+                <div>
+
+                  <div class="section-label">
+                    RECOMMENDED FIX
+                  </div>
+
+                  <h3>
+                    What should you do?
+                  </h3>
+
+                </div>
+
+              </div>
+
+              <div
+                id="recommended-fix"
+                class="recommendations"
+              ></div>
+
+            </div>
+
+
+            <div class="panel results-panel verification-section">
+
+              <div class="section-heading">
+
+                <span class="section-icon">
+                  ✓
+                </span>
+
+                <div>
+
+                  <div class="section-label">
+                    VERIFICATION PLAN
+                  </div>
+
+                  <h3>
+                    How do we confirm it?
+                  </h3>
+
+                </div>
+
+              </div>
+
+              <div
+                id="verification-plan"
+                class="verification-plan"
+              ></div>
+
+              <div class="verify-fix-row">
+
+                <button
+                  type="button"
+                  id="verify-fix-btn"
+                  class="primary-action"
+                >
+                  Verify Fix
+                </button>
+
+                <p
+                  id="verify-fix-banner"
+                  class="verify-fix-banner hidden"
+                >
+                  Prototype placeholder. Verify Fix is a future
+                  workflow and is not connected to the backend yet.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <footer class="footer">
+
+          <span>FailureTrace</span>
+          <span>•</span>
+          <span>
+            AI-assisted engineering investigation
+          </span>
+          <span>•</span>
+          <span>
+            Prototype
+          </span>
+
+        </footer>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           HISTORY VIEW
+           =================================================== -->
+
+      <section
+        id="history-view"
+        class="page-view hidden"
+      >
+
+        <header class="topbar">
+
+          <div>
+
+            <div class="eyebrow">
+              WORKSPACE / HISTORY
+            </div>
+
+            <h1>
+              Investigation History
+            </h1>
+
+          </div>
+
+          <button
+            class="primary-action compact-action"
+            data-action="start-investigation"
+          >
+            ＋ New Investigation
+          </button>
+
+        </header>
+
+
+        <div class="empty-workspace">
+
+          <div class="empty-icon">
+            ◷
+          </div>
+
+          <div class="home-kicker">
+            INVESTIGATION HISTORY
+          </div>
+
+          <h2>
+            Your investigations will appear here.
+          </h2>
+
+          <div class="history-workspace">
+
+  <div class="history-header-row">
+    <div>
+      <div class="home-kicker">
+        RECENT INVESTIGATIONS
+      </div>
+
+      <p class="history-subtitle">
+        Review your previous FailureTrace investigations.
+      </p>
+    </div>
+
+    <button
+      class="secondary-action"
+      id="clear-history-btn"
+      type="button"
+    >
+      Clear History
+    </button>
+  </div>
+
+  <div
+    id="history-list"
+    class="history-list"
+  >
+  </div>
+
+</div>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           SAVED VIEW
+           =================================================== -->
+
+      <section
+        id="saved-view"
+        class="page-view hidden"
+      >
+
+        <header class="topbar">
+
+          <div>
+
+            <div class="eyebrow">
+              WORKSPACE / SAVED
+            </div>
+
+            <h1>
+              Saved Investigations
+            </h1>
+
+          </div>
+
+        </header>
+
+
+        <div class="empty-workspace">
+
+          <div class="empty-icon">
+            ☆
+          </div>
+
+          <div class="home-kicker">
+            SAVED
+          </div>
+
+          <h2>
+            Save important investigations.
+          </h2>
+
+          <p>
+            Keep useful root-cause analyses and fixes close at hand.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           INSIGHTS VIEW
+           =================================================== -->
+
+      <section
+        id="insights-view"
+        class="page-view hidden"
+      >
+
+        <header class="topbar">
+
+          <div>
+
+            <div class="eyebrow">
+              ENGINEERING INTELLIGENCE / INSIGHTS
+            </div>
+
+            <h1>
+              Failure Insights
+            </h1>
+
+          </div>
+
+        </header>
+
+
+        <div class="insight-grid">
+
+          <div class="insight-card">
+
+            <span class="home-kicker">
+              SIGNALS
+            </span>
+
+            <strong>
+              5
+            </strong>
+
+            <p>
+              Failure signals analyzed per investigation.
+            </p>
+
+          </div>
+
+
+          <div class="insight-card">
+
+            <span class="home-kicker">
+              ENGINE
+            </span>
+
+            <strong>
+              GEMINI
+            </strong>
+
+            <p>
+              AI-powered reasoning across engineering evidence.
+            </p>
+
+          </div>
+
+
+          <div class="insight-card">
+
+            <span class="home-kicker">
+              APPROACH
+            </span>
+
+            <strong>
+              TRACE
+            </strong>
+
+            <p>
+              Follow the failure chain instead of guessing from one error.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
     </main>
-    <script src="/static/app.js"></script>
-  </body>
+
+  </div>
+
+
+  <script src="/static/app.js"></script>
+
+</body>
 </html>

@@ -1,0 +1,8 @@
+{
+  "error_message": "Application failed to start due to incompatible dependency version",
+  "stack_trace": "Traceback (most recent call last):\n  File \"app/main.py\", line 12, in <module>\n    from fastapi import FastAPI\n  File \"site-packages/fastapi/__init__.py\", line 7, in <module>\n    raise ImportError(\"cannot import name 'X' from dependency\")\nImportError: cannot import name 'X' from dependency",
+  "logs": "2026-09-09 16:05:11 INFO Starting application\n2026-09-09 16:05:11 INFO Loading application dependencies\n2026-09-09 16:05:11 ERROR ImportError: cannot import name 'X' from dependency\n2026-09-09 16:05:11 ERROR Application startup failed\n2026-09-09 16:05:11 INFO Process exited with code 1",
+  "recent_changes": "The dependency package was upgraded to a newer major version in the latest deployment.",
+  "expected_behavior": "The application should start successfully and load all required dependencies.",
+  "code_context": "The application imports the dependency during startup. Dependency versions are managed through the project's requirements file."
+}

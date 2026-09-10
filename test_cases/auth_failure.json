@@ -1,0 +1,8 @@
+{
+  "error_message": "Authentication failed: invalid or expired credentials",
+  "stack_trace": "Traceback (most recent call last):\n  File \"app/auth.py\", line 64, in authenticate_request\n    token = auth_client.get_token(credentials)\n  File \"app/auth_client.py\", line 118, in get_token\n    raise AuthenticationError(\"invalid_client\")\nAuthenticationError: invalid_client",
+  "logs": "2026-09-09 14:21:03 INFO Received authentication request\n2026-09-09 14:21:03 INFO Loading authentication configuration\n2026-09-09 14:21:03 WARN Authentication provider rejected client credentials\n2026-09-09 14:21:03 ERROR Authentication failed: invalid_client\n2026-09-09 14:21:03 INFO Retrying authentication\n2026-09-09 14:21:04 ERROR Authentication failed after retry",
+  "recent_changes": "The authentication service configuration was updated earlier today. The client credentials were rotated, and the authentication provider endpoint configuration was also reviewed.",
+  "expected_behavior": "Valid application requests should authenticate successfully and receive an access token.",
+  "code_context": "The application obtains an access token from an external authentication provider using configured client credentials and an authentication endpoint."
+}
